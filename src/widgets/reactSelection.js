@@ -30,7 +30,7 @@ class ReactSelection extends Component {
 
     render() {
         const { selectedOption } = this.state;
-        const {autofocus, schema, uiSchema, value, ...otherProps} = this.props;
+        const {autofocus, schema, uiSchema, value, className, ...otherProps} = this.props;
 
         let selectOptionsValues = schema.enum,
             selectOptionsLabels = schema.enumNames ? schema.enumNames : schema.enum,
@@ -38,6 +38,7 @@ class ReactSelection extends Component {
 
         return (
             <Select {...otherProps}
+                className={(className ? className + ' ' : '') + 'selection--' + this.props.id}
                 autoFocus={autofocus}
                 value={selectedOption}
                 onChange={this._handleChange}
