@@ -10,13 +10,30 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 
+const getSelectionStateObject = (props) => {
+    let labelText = '';
+    if(props.value) {
+        if(props.schema.enumNames) {
+            labelText = props.schema.enumNames[props.schema.enum.indexOf(props.value)];
+        } else {
+            labelText = props.value;
+        }
+    }
+
+    return {
+        value: props.value,
+        selectedOption: props.value ? {value: props, label: labelText} : ''
+    };
+};
+
 class ReactSelection extends Component {
+    static getDerivedStateFromProps(props, state) {
+        return props.value === state.value ? state : getSelectionStateObject(props);
+    }
+
     constructor(props) {
         super(props);
-        this.state = {
-            value: this.props.value,
-            selectedOption: ''
-        }
+        this.state = getSelectionStateObject(props);
     }
 
     _handleChange = (selectedOption) => {
@@ -29,7 +46,6 @@ class ReactSelection extends Component {
     };
 
     render() {
-        const { selectedOption } = this.state;
         const {autofocus, schema, uiSchema, value, className, ...otherProps} = this.props;
 
         let selectOptionsValues = schema.enum,
@@ -40,18 +56,12 @@ class ReactSelection extends Component {
             <Select {...otherProps}
                 className={(className ? className + ' ' : '') + 'selection--' + this.props.id}
                 autoFocus={autofocus}
-                value={selectedOption}
+                value={this.state.selectedOption}
                 onChange={this._handleChange}
                 options={selectOptions}
             />
         );
     }
 }
-
-ReactSelection.defaultProps = {
-};
-
-ReactSelection.propsTypes = {
-};
 
 export default ReactSelection;
