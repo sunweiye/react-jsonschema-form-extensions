@@ -46,15 +46,16 @@ class ReactSelection extends Component {
     };
 
     render() {
-        const {autofocus, schema, uiSchema, value, className, ...otherProps} = this.props;
+        const {autofocus, schema, uiSchema, value, ...otherProps} = this.props;
 
         let selectOptionsValues = schema.enum,
             selectOptionsLabels = schema.enumNames ? schema.enumNames : schema.enum,
-            selectOptions = selectOptionsValues.map((value, index) => {return {value: value, label: selectOptionsLabels[index]}});
+            selectOptions = selectOptionsValues.map((value, index) => {return {value: value, label: selectOptionsLabels[index]}}),
+            selectProps = {...otherProps, ...this.props.options.select};
 
         return (
-            <Select {...otherProps}
-                className={(className ? className + ' ' : '') + 'selection--' + this.props.id}
+            <Select {...selectProps}
+                className={(selectProps.className ? selectProps.className + ' ' : '') + 'selection--' + this.props.id}
                 autoFocus={autofocus}
                 value={this.state.selectedOption}
                 onChange={this._handleChange}
