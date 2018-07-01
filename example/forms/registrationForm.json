@@ -44,6 +44,10 @@
           "日本語"
         ]
       },
+      "country": {
+        "type": "string",
+        "title": "Country"
+      },
       "password": {
         "type": "string",
         "title": "Password",
@@ -67,7 +71,15 @@
       "ui:description": "(earthian year)"
     },
     "language": {
-      "ui:title": "Select your language"
+      "ui:title": "Select your language",
+      "ui:widget": "ReactSelection",
+      "ui:placeholder": "Select Your Language",
+      "ui:options": {
+        "select": {
+          "className": "test",
+          "multi": true
+        }
+      }
     },
     "password": {
       "ui:widget": "password",
@@ -80,11 +92,24 @@
       "ui:options": {
         "inputType": "tel"
       }
+    },
+    "country": {
+      "ui:widget": "ReactAutoComplete",
+      "ui:options": {
+        "autoComplete" : {
+          "inputProps": {
+            "className": "country-input"
+          },
+          "async": {
+            "url": "https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-name.json",
+            "valueKey": "country",
+            "labelKey": "country"
+          }
+        }
+      }
     }
   },
   "formData": {
-    "firstName": "Chuck",
-    "lastName": "Norris",
     "age": 75,
     "password": "noneed"
   }

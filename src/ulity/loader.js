@@ -7,8 +7,9 @@
 
 'use strict';
 
-import Selection from './widgets/selection';
-import AutoComplete from './widgets/autoComplete';
-
-export const ReactSelection = Selection;
-export const ReactAutoComplete = AutoComplete;
+export const loadDataFromRemote = (url, req = null) => {
+    return fetch(url, req)
+        .then(function(response) {
+            return response.json();
+        });
+};

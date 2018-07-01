@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) 2018-present, Weiye Sun.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -26,7 +26,7 @@ const getSelectionStateObject = (props) => {
     };
 };
 
-class ReactSelection extends Component {
+class Selection extends Component {
     static getDerivedStateFromProps(props, state) {
         return props.value === state.value ? state : getSelectionStateObject(props);
     }
@@ -46,12 +46,12 @@ class ReactSelection extends Component {
     };
 
     render() {
-        const {autofocus, schema, uiSchema, value, ...otherProps} = this.props;
+        const {autofocus, schema, value, options, ...otherProps} = this.props;
 
         let selectOptionsValues = schema.enum,
             selectOptionsLabels = schema.enumNames ? schema.enumNames : schema.enum,
             selectOptions = selectOptionsValues.map((value, index) => {return {value: value, label: selectOptionsLabels[index]}}),
-            selectProps = {...otherProps, ...this.props.options.select};
+            selectProps = {...otherProps, ...options.select};
 
         return (
             <Select {...selectProps}
@@ -65,4 +65,4 @@ class ReactSelection extends Component {
     }
 }
 
-export default ReactSelection;
+export default Selection;

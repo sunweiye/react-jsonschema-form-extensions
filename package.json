@@ -12,6 +12,7 @@
   "dependencies": {
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.3.1",
     "react-select": "^1.2.1"
   },
@@ -25,6 +26,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-webpack": "^1.2.5",
     "eslint-plugin-react": "^7.7.0",
@@ -33,7 +35,7 @@
     "react-hot-loader": "^4.0.0",
     "react-jsonschema-form": "^1.0.3",
     "sinon": "^4.5.0",
-    "style-loader": "^0.20.3",
+    "style-loader": "^0.21.0",
     "webpack": "^4.5.0",
     "webpack-dev-middleware": "^3.1.2",
     "webpack-hot-middleware": "^2.21.2"

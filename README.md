@@ -25,6 +25,16 @@ import {ReactSelection} from 'react-jsonschema-form-extensions';
 uiShema["ui:widget"] = (props) => <ReactSelection {...props} />
 ```
 
+### react-auto-complete
+An UI widget for the form with [react-autocomplete](https://github.com/reactjs/react-autocomplete)
+##### Usage
+The auto complete can be used with static data and async loader
+
+```jsx
+import {ReactAutoComplete} from 'react-jsonschema-form-extensions';
+uiShema["ui:widget"] = (props) => <ReactAutoComplete {...props} />
+```
+
 # License
 
 MIT Licensed. Copyright (c) 2018-present, Weiye Sun.
