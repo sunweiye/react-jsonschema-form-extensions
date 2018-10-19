@@ -20,9 +20,9 @@
         "type": "integer",
         "title": "Age"
       },
-      "language": {
+      "nativeLanguage": {
         "type": "string",
-        "title": "Language",
+        "title": "Native Language",
         "enum": [
           "en",
           "de",
@@ -43,6 +43,39 @@
           "简体中文",
           "日本語"
         ]
+      },
+      "language": {
+        "type": "array",
+        "title": "Language",
+        "items": {
+          "type": "string",
+          "enum": [
+            "en",
+            "de",
+            "fr",
+            "es",
+            "pt",
+            "ru",
+            "zh",
+            "jp"
+          ],
+          "enumNames": [
+            "English",
+            "Deutsch",
+            "Français",
+            "Español",
+            "Português",
+            "Pусский",
+            "简体中文",
+            "日本語"
+          ]
+        },
+        "uniqueItems": true
+      },
+      "hasChildren": {
+        "type": "integer",
+        "title": "How many children do you have",
+        "enum": [0, 1, 2, 3, 4]
       },
       "country": {
         "type": "string",
@@ -70,10 +103,15 @@
       "ui:title": "Age of person",
       "ui:description": "(earthian year)"
     },
-    "language": {
-      "ui:title": "Select your language",
+    "nativeLanguage": {
+      "ui:title": "Select your native language",
       "ui:widget": "ReactSelection",
-      "ui:placeholder": "Select Your Language",
+      "ui:placeholder": "Select Your Native Language"
+    },
+    "language": {
+      "ui:title": "Select the languages, that you can",
+      "ui:widget": "ReactSelection",
+      "ui:placeholder": "Select Your Languages",
       "ui:options": {
         "select": {
           "className": "test",
@@ -93,6 +131,10 @@
         "inputType": "tel"
       }
     },
+    "hasChildren": {
+      "ui:widget": "ReactSelection",
+      "ui:placeholder": "Select how many children do you have"
+    },
     "country": {
       "ui:widget": "ReactAutoComplete",
       "ui:options": {
@@ -111,6 +153,8 @@
   },
   "formData": {
     "age": 75,
-    "password": "noneed"
+    "password": "noneed",
+    "nativeLanguage": "zh",
+    "language": ["en", "de"]
   }
 }

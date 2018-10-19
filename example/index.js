@@ -12,7 +12,7 @@ let FormExtensions = {
 const registrationForm = require('./forms/registrationForm');
 
 const renderFilterList = () => {
-    ReactDOM.render(<Form {...registrationForm} widgets={FormExtensions}/>, document.getElementById('form-app'));
+    ReactDOM.render(<Form {...registrationForm} widgets={FormExtensions} onSubmit={({formData}) => console.log(formData) }/>, document.getElementById('form-app'));
 
 };
 
