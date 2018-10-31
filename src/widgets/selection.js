@@ -72,12 +72,25 @@ const getSelectionStateObject = (props) => {
 
     return {
         value: props.value,
-        selectedOptions: selectionOptions
+        selectedOptions: selectionOptions,
+        enumOptions: props.options.enumOptions
     };
 };
 
 class Selection extends Component {
     static getDerivedStateFromProps(props, state) {
+        let optionsLength = props.options.enumOptions.length;
+
+        if(optionsLength !== state.enumOptions.length) {
+            return getSelectionStateObject(props);
+        }
+
+        for (let i = 0; i < optionsLength; i++) {
+            if(props.options.enumOptions[i].value !== state.enumOptions[i].value) {
+                return getSelectionStateObject(props);
+            }
+        }
+
         return props.value === state.value ? state : getSelectionStateObject(props);
     }
 
