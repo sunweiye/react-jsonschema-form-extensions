@@ -5,9 +5,11 @@
   "author": "Weiye Sun",
   "license": "MIT",
   "main": "./lib",
+  "module": "./module",
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "module"
   ],
   "dependencies": {
     "prop-types": "^15.6.1",
@@ -40,8 +42,10 @@
     "webpack-dev-middleware": "^3.1.2",
     "webpack-hot-middleware": "^2.21.2"
   },
+  "sideEffects": false,
   "scripts": {
     "build:lib": "cross-env NODE_ENV=production babel -d lib/ src/",
+    "build:module": "cross-env NODE_ENV=production babel -d module/ src/",
     "start": "NODE_ENV=development node devServer.js"
   }
 }
