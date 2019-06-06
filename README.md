@@ -1,7 +1,7 @@
 react-jsonschema-form-extensions
 ============
 
-The collections of widgets and fields for react-jsonschema-form project
+A collection of widgets and fields for [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form) project
 
 ---
 
@@ -9,9 +9,8 @@ The collections of widgets and fields for react-jsonschema-form project
 
 At this moment, the project is still under development, more widgets and fields are planed to add into this project.
 Therefore, the project is not published to [npm](https://www.npmjs.com/). But it can be install from github repository:
-`
-npm install https://github.com/sunweiye/react-jsonschema-form-extensions.git
-`
+
+    npm install https://github.com/sunweiye/react-jsonschema-form-extensions.git
 
 ## Widgets
 The widgets include:

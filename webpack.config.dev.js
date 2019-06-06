@@ -5,9 +5,6 @@ module.exports = {
     devtool: "eval",
     mode: process.env.NODE_ENV,
     entry: [
-        "react-hot-loader/patch",
-        "webpack-hot-middleware/client?reload=true",
-        "webpack/hot/only-dev-server",
         "./example/index.js"
     ],
     output: {
@@ -26,13 +23,14 @@ module.exports = {
         //do not emit compiled assets that include errors
     ],
     module: {
-        rules:[
+        rules: [
             {
                 test: /\.jsx?$/,
                 include: [
                     path.join(__dirname, "example"),
                     path.join(__dirname, "src")
                 ],
+                exclude: /node_modules/,
                 loader: require.resolve('babel-loader'),
                 options: {
                     cacheDirectory: true,
