@@ -4,238 +4,269 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _react = _interopRequireWildcard(require("react"));
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _propTypes = _interopRequireDefault(require("prop-types"));
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var _reactAutocomplete = _interopRequireDefault(require("react-autocomplete"));
+
+var _loader = require("../ulity/loader");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-import React, { Component } from 'react';
-import PropTypes from "prop-types";
-import Autocomplete from 'react-autocomplete';
-import { loadDataFromRemote } from '../ulity/loader';
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var getValueFromItem = function getValueFromItem(item) {
-    var propertyName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'value';
+  var propertyName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'value';
 
-    switch (typeof item === 'undefined' ? 'undefined' : _typeof(item)) {
-        case 'object':
-            var propertyKey = item.hasOwnProperty(propertyName) ? propertyName : Object.keys(item)[0];
-            return item[propertyKey];
-        case 'function':
-            return item();
-        default:
-            return item;
-    }
+  switch (_typeof(item)) {
+    case 'object':
+      var propertyKey = item.hasOwnProperty(propertyName) ? propertyName : Object.keys(item)[0];
+      return item[propertyKey];
+
+    case 'function':
+      return item();
+
+    default:
+      return item;
+  }
 };
 
 var renderItemByDefault = function renderItemByDefault(item, isHighlighted, styles) {
-    var itemName = getValueFromItem(item, 'name');
-
-    return React.createElement(
-        'div',
-        { key: itemName,
-            className: isHighlighted ? 'item-highlighted' : '',
-            style: styles },
-        itemName
-    );
+  var itemName = getValueFromItem(item, 'name');
+  return _react.default.createElement("div", {
+    key: itemName,
+    className: isHighlighted ? 'item-highlighted' : '',
+    style: styles
+  }, itemName);
 };
 
 var matchItemToValue = function matchItemToValue(item, value) {
-    return getValueFromItem(item).toLowerCase().indexOf(value.toLowerCase()) !== -1;
+  return getValueFromItem(item).toLowerCase().indexOf(value.toLowerCase()) !== -1;
 };
 
 var buildItemsFromResponse = function buildItemsFromResponse(data, valueKey, labelKey, currentValue) {
-    if (!Array.isArray(data)) {
-        data = [data];
+  if (!Array.isArray(data)) {
+    data = [data];
+  }
+
+  var results = [];
+  currentValue = currentValue.toLowerCase();
+
+  for (var i = 0; i < data.length; i++) {
+    var item = data[i],
+        value = void 0,
+        label = void 0;
+
+    if (valueKey && item.hasOwnProperty(valueKey)) {
+      value = item[valueKey];
+    } else {
+      valueKey = Object.keys(item)[0];
+      value = item[valueKey];
     }
 
-    var results = [];
-    currentValue = currentValue.toLowerCase();
+    if (value.toLowerCase().indexOf(currentValue) !== -1) {
+      if (labelKey && item.hasOwnProperty(labelKey)) {
+        label = item[labelKey];
+      } else {
+        labelKey = valueKey;
+        label = item[labelKey];
+      }
 
-    for (var i = 0; i < data.length; i++) {
-        var item = data[i],
-            value = void 0,
-            label = void 0;
-        if (valueKey && item.hasOwnProperty(valueKey)) {
-            value = item[valueKey];
-        } else {
-            valueKey = Object.keys(item)[0];
-            value = item[valueKey];
-        }
-
-        if (value.toLowerCase().indexOf(currentValue) !== -1) {
-            if (labelKey && item.hasOwnProperty(labelKey)) {
-                label = item[labelKey];
-            } else {
-                labelKey = valueKey;
-                label = item[labelKey];
-            }
-            results.push({ name: label, value: value });
-        }
+      results.push({
+        name: label,
+        value: value
+      });
     }
+  }
 
-    return results;
+  return results;
 };
 
 var loadItemsFromRemote = function loadItemsFromRemote(url, request, valueKey, labelKey, currentValue) {
-    return loadDataFromRemote(url, request).then(function (data) {
-        return buildItemsFromResponse(data, valueKey, labelKey, currentValue);
-    });
+  return (0, _loader.loadDataFromRemote)(url, request).then(function (data) {
+    return buildItemsFromResponse(data, valueKey, labelKey, currentValue);
+  });
 };
 
-var AutoComplete = function (_Component) {
-    _inherits(AutoComplete, _Component);
+var AutoComplete =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AutoComplete, _Component);
 
-    _createClass(AutoComplete, null, [{
-        key: 'getDerivedStateFromProps',
-        value: function getDerivedStateFromProps(props, state) {
-            return props.value === state.value ? state : props.value;
-        }
-    }]);
+  _createClass(AutoComplete, null, [{
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(props, state) {
+      return props.value === state.value ? state : props.value;
+    }
+  }]);
 
-    function AutoComplete(props) {
-        _classCallCheck(this, AutoComplete);
+  function AutoComplete(props) {
+    var _this;
 
-        var _this = _possibleConstructorReturn(this, (AutoComplete.__proto__ || Object.getPrototypeOf(AutoComplete)).call(this, props));
+    _classCallCheck(this, AutoComplete);
 
-        _initialiseProps.call(_this);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AutoComplete).call(this, props));
 
-        var _this$props = _this.props,
-            autofocus = _this$props.autofocus,
-            schema = _this$props.schema,
-            value = _this$props.value,
-            options = _this$props.options,
-            asyncLoad = _this$props.asyncLoad,
-            otherProps = _objectWithoutProperties(_this$props, ['autofocus', 'schema', 'value', 'options', 'asyncLoad']);
+    _defineProperty(_assertThisInitialized(_this), "_handleChange", function (value) {
+      _this.props.onChange(value);
 
-        var _options$autoComplete = options.autoComplete,
-            async = _options$autoComplete.async,
-            autoCompleteOptions = _objectWithoutProperties(_options$autoComplete, ['async']);
-
-        var autoCompleteSettings = _extends({ autoFocus: autofocus }, otherProps, autoCompleteOptions);
-
-        if (asyncLoad) {
-            _this.asyncLoader = asyncLoad;
-        } else {
-            var asyncLoaderConfig = _this._getAsyncConfig(async);
-            asyncLoaderConfig ? _this.asyncLoader = loadItemsFromRemote.bind('', asyncLoaderConfig.url, asyncLoaderConfig.request, asyncLoaderConfig.valueKey, asyncLoaderConfig.labelKey) : autoCompleteSettings.shouldItemRender = matchItemToValue;
-        }
-
-        if (autoCompleteSettings.inputProps) {
-            autoCompleteSettings.inputProps.className = autoCompleteSettings.inputProps.className ? autoCompleteSettings.inputProps.className + ' form-control' : 'form-control';
-        } else {
-            autoCompleteSettings.inputProps = {
-                className: 'form-control'
-            };
-        }
-
-        if (!autoCompleteSettings.wrapperStyle) {
-            autoCompleteSettings.wrapperStyle = {};
-        }
-
-        var items = autoCompleteSettings.items,
-            autoCompleteProps = _objectWithoutProperties(autoCompleteSettings, ['items']);
-
-        _this.autoCompleteProps = autoCompleteProps;
-
-        _this.state = {
+      if (_this.asyncLoader) {
+        _this.asyncLoader(value).then(function (items) {
+          return _this.setState({
             value: value,
             items: items
-        };
-        return _this;
+          });
+        });
+      } else {
+        _this.setState({
+          value: value
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "_getAsyncConfig", function (asyncConfig) {
+      var config = {
+        url: '',
+        request: null,
+        valueKey: null,
+        labelKey: null
+      };
+
+      switch (_typeof(asyncConfig)) {
+        case "string":
+          config.url = asyncConfig;
+          break;
+
+        case "object":
+          for (var key in config) {
+            config[key] = asyncConfig[key];
+          }
+
+          break;
+
+        default:
+          return false;
+      }
+
+      return config;
+    });
+
+    var _this$props = _this.props,
+        autofocus = _this$props.autofocus,
+        schema = _this$props.schema,
+        _value = _this$props.value,
+        options = _this$props.options,
+        asyncLoad = _this$props.asyncLoad,
+        otherProps = _objectWithoutProperties(_this$props, ["autofocus", "schema", "value", "options", "asyncLoad"]);
+
+    var _options$autoComplete = options.autoComplete,
+        async = _options$autoComplete.async,
+        autoCompleteOptions = _objectWithoutProperties(_options$autoComplete, ["async"]);
+
+    var autoCompleteSettings = _objectSpread({
+      autoFocus: autofocus
+    }, otherProps, autoCompleteOptions);
+
+    if (asyncLoad) {
+      _this.asyncLoader = asyncLoad;
+    } else {
+      var asyncLoaderConfig = _this._getAsyncConfig(async);
+
+      asyncLoaderConfig ? _this.asyncLoader = loadItemsFromRemote.bind('', asyncLoaderConfig.url, asyncLoaderConfig.request, asyncLoaderConfig.valueKey, asyncLoaderConfig.labelKey) : autoCompleteSettings.shouldItemRender = matchItemToValue;
     }
 
-    _createClass(AutoComplete, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
+    if (autoCompleteSettings.inputProps) {
+      autoCompleteSettings.inputProps.className = autoCompleteSettings.inputProps.className ? autoCompleteSettings.inputProps.className + ' form-control' : 'form-control';
+    } else {
+      autoCompleteSettings.inputProps = {
+        className: 'form-control'
+      };
+    }
 
-            var _state = this.state,
-                value = _state.value,
-                items = _state.items;
+    if (!autoCompleteSettings.wrapperStyle) {
+      autoCompleteSettings.wrapperStyle = {};
+    }
 
-            return React.createElement(Autocomplete, _extends({}, this.autoCompleteProps, {
-                autoHighlight: true,
-                value: value,
-                items: items,
-                onChange: function onChange(event, value) {
-                    return _this2._handleChange(value);
-                },
-                onSelect: this._handleChange
-            }));
-        }
-    }]);
+    var _items = autoCompleteSettings.items,
+        autoCompleteProps = _objectWithoutProperties(autoCompleteSettings, ["items"]);
 
-    return AutoComplete;
-}(Component);
-
-var _initialiseProps = function _initialiseProps() {
-    var _this3 = this;
-
-    this._handleChange = function (value) {
-        _this3.props.onChange(value);
-        if (_this3.asyncLoader) {
-            _this3.asyncLoader(value).then(function (items) {
-                return _this3.setState({
-                    value: value,
-                    items: items
-                });
-            });
-        } else {
-            _this3.setState({
-                value: value
-            });
-        }
+    _this.autoCompleteProps = autoCompleteProps;
+    _this.state = {
+      value: _value,
+      items: _items
     };
+    return _this;
+  }
 
-    this._getAsyncConfig = function (asyncConfig) {
-        var config = {
-            url: '',
-            request: null,
-            valueKey: null,
-            labelKey: null
-        };
+  _createClass(AutoComplete, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
 
-        switch (typeof asyncConfig === 'undefined' ? 'undefined' : _typeof(asyncConfig)) {
-            case "string":
-                config.url = asyncConfig;
-                break;
-            case "object":
-                for (var key in config) {
-                    config[key] = asyncConfig[key];
-                }
-                break;
-            default:
-                return false;
-        }
+      var _this$state = this.state,
+          value = _this$state.value,
+          items = _this$state.items;
+      return _react.default.createElement(_reactAutocomplete.default, _extends({}, this.autoCompleteProps, {
+        autoHighlight: true,
+        value: value,
+        items: items,
+        onChange: function onChange(event, value) {
+          return _this2._handleChange(value);
+        },
+        onSelect: this._handleChange
+      }));
+    }
+  }]);
 
-        return config;
-    };
-};
+  return AutoComplete;
+}(_react.Component);
 
 AutoComplete.defaultProps = {
-    items: [],
-    getItemValue: getValueFromItem,
-    renderItem: renderItemByDefault
+  items: [],
+  getItemValue: getValueFromItem,
+  renderItem: renderItemByDefault
 };
-
 AutoComplete.prototypes = {
-    items: PropTypes.array,
-    getItemValue: PropTypes.func,
-    renderItem: PropTypes.func,
-    asyncLoad: PropTypes.func
+  items: _propTypes.default.array,
+  getItemValue: _propTypes.default.func,
+  renderItem: _propTypes.default.func,
+  asyncLoad: _propTypes.default.func
 };
-
-export default AutoComplete;
+var _default = AutoComplete;
+exports.default = _default;
